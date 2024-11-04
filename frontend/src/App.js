@@ -1,6 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
-import React, {Component} from 'react'
+import ListOfTasks from './components/ListOfTasks.js';
+import Header from './common/Header.js';
+import React, {Component} from 'react';
 
 class App extends Component {
     state = {
@@ -10,7 +11,6 @@ class App extends Component {
     async componentDidMount() {
         const response = await fetch('/tests');
         const body = await response.text();
-        console.log(body)
         this.setState({text: body});
     }
 
@@ -18,13 +18,12 @@ class App extends Component {
         const {text} = this.state;
         return (
             <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <div className="App-intro">
-                        <h2>Test text</h2>
-                        {text}
-                    </div>
-                </header>
+                <Header/>
+                <ListOfTasks />
+                <div className="App-intro">
+                    <h2>Test text</h2>
+                    {text}
+                </div>
             </div>
         );
     }
